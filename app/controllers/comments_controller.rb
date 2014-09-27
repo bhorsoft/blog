@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate, except: [:index, :show]
+ 
   
   # GET /comments
   # GET /comments.json
@@ -72,11 +72,5 @@ class CommentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
       params.require(:comment).permit(:post_id, :body)
-    end
-    
-    def authenticate
-        authenticate_or_request_with_http_basic do |name, password|
-            name == "admin" && password == "secret"
-        end
     end
 end
